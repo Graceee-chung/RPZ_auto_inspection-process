@@ -11,21 +11,17 @@ from rpz_fraud import process_folder_fraud
 from rpz_smoke import process_folder_smoke
 
 
-# 設定
 today = datetime.today()
 rpz_root = f"C:\\Users\\user\\Desktop\\RPZ\\RPZ_auto"
 doc_folder = os.path.join(rpz_root, today.strftime('%Y%m%d'))
 
-# 初始化 Outlook
 outlook = win32.Dispatch('Outlook.Application')
 
-# 建立 logs 資料夾與 log 檔案
 log_dir = datetime.today().strftime("%Y%m%d") + f"\\logs"
 log_dir = os.path.join(rpz_root, log_dir)
 os.makedirs(log_dir, exist_ok=True)
 log_file = os.path.join(log_dir, f"{datetime.today().strftime('%Y%m%d')}.log")
 
-# 設定 logging 格式
 logging.basicConfig(
     filename=log_file,
     filemode='a',
@@ -50,7 +46,6 @@ def move_to_error_folder(folder_path, folder_name, base_folder):
     print(f"[→] 已移動錯誤資料夾至：{error_dir_name}")
 
 
-# 遍歷每個公文資料夾
 for folder_name in os.listdir(doc_folder):
     folder_path = os.path.join(doc_folder, folder_name)
     if not os.path.isdir(folder_path):
