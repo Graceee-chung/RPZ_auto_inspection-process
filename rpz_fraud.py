@@ -168,18 +168,18 @@ def process_folder_fraud(folder_path, folder_name, base_folder, outlook):
         for f in document_file + pdf_files:
             zipf.write(os.path.join(folder_path, f), arcname=f)
 
-    # mail = outlook.CreateItem(0)
-    # mail.To = "rpz10@daar.twnic.tw; kathysung@twnic.tw; chung@twnic.tw"
-    # mail.Subject = folder_name
-    # mail.Body = ""
-    # mail.Attachments.Add(zip_path)
-    # mail.Attachments.Add(output_path)
+    mail = outlook.CreateItem(0)
+    mail.To = "rpz10@daar.twnic.tw; kathysung@twnic.tw; chung@twnic.tw"
+    mail.Subject = folder_name
+    mail.Body = ""
+    mail.Attachments.Add(zip_path)
+    mail.Attachments.Add(output_path)
 
-    # session = outlook.GetNamespace("MAPI")
-    # account = session.Accounts.Item(1)
+    session = outlook.GetNamespace("MAPI")
+    account = session.Accounts.Item(1)
 
-    # mail.SendUsingAccount = account 
-    # mail.SaveSentMessageFolder = account.DeliveryStore.GetDefaultFolder(5)  
+    mail.SendUsingAccount = account 
+    mail.SaveSentMessageFolder = account.DeliveryStore.GetDefaultFolder(5)  
 
-    # mail.Send()
+    mail.Send()
 
